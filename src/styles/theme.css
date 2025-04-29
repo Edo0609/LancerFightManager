@@ -1,0 +1,22 @@
+:root {
+  /* Light theme (default) */
+  --background-color: #ffffff;
+  --text-color: #ffffff;
+  --text-color-secondary: #363636;
+  --primary-color: #741d1d;
+  --secondary-color: #f3e3e3;
+  --accent-color: #c27676;
+  --border-color: #e0e0e0;
+  --hover-color: #f0f0f0;
+}
+
+[data-theme="dark"] {
+  --background-color: #0d0d0f;
+  --text-color: #ffffff;
+  --text-color-secondary: #ffffff;
+  --primary-color: #227988;
+  --secondary-color: #16151b;
+  --accent-color: #5cd4d4;
+  --border-color: #404040;
+  --hover-color: #333333;
+} 
