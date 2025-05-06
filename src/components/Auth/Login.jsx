@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import Notification from '../Notification/Notification';
 import './Auth.css';
 
-const Login = ({ onToggleForm }) => {
+const Login = ({ onToggleForm, onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const [notification, setNotification] = useState(null);
+  const { login, currentUser } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -16,10 +18,29 @@ const Login = ({ onToggleForm }) => {
       setError('');
       setLoading(true);
       await login(email, password);
+      setNotification({
+        message: 'Successfully logged in!',
+        type: 'success'
+      });
+      setTimeout(() => {
+        onClose();
+      }, 1000); // Give user time to see the success message
     } catch (error) {
+      console.error('Login error:', error);
       setError('Failed to sign in: ' + error.message);
+      setNotification({
+        message: 'Failed to sign in. Please try again.',
+        type: 'error'
+      });
     }
     setLoading(false);
+  }
+
+  // Debug info
+  console.log('Current auth state:', currentUser ? 'Logged in' : 'Not logged in');
+  if (currentUser) {
+    console.log('User email:', currentUser.email);
+    console.log('User ID:', currentUser.uid);
   }
 
   return (
@@ -64,6 +85,13 @@ const Login = ({ onToggleForm }) => {
           </button>
         </div>
       </div>
+      {notification && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
+        />
+      )}
     </div>
   );
 };

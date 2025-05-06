@@ -14,9 +14,9 @@ const Auth = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       {isLogin ? (
-        <Login onToggleForm={toggleForm} />
+        <Login onToggleForm={toggleForm} onClose={onClose} />
       ) : (
-        <Signup onToggleForm={toggleForm} />
+        <Signup onToggleForm={toggleForm} onClose={onClose} />
       )}
     </Modal>
   );

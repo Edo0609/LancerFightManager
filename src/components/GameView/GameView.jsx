@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GameTopBar from '../GameTopBar/GameTopBar';
+import MechList from '../MechList/MechList';
+import Auth from '../Auth/Auth';
 import './GameView.css';
 
 const GameView = ({ onAuthClick }) => {
+  const navigate = useNavigate();
   const [sessionName, setSessionName] = useState('Current Session');
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const handleBack = () => {
-    // TODO: Implement back navigation
-    console.log('Back clicked');
+    navigate('/');
   };
 
   const handleSave = () => {
@@ -32,6 +36,10 @@ const GameView = ({ onAuthClick }) => {
     document.documentElement.setAttribute('data-theme', isDarkTheme ? 'light' : 'dark');
   };
 
+  const handleAuthClick = () => {
+    setIsAuthModalOpen(true);
+  };
+
   return (
     <div className="game-view">
       <GameTopBar 
@@ -41,11 +49,15 @@ const GameView = ({ onAuthClick }) => {
         onHelp={handleHelp}
         onSessionNameChange={handleSessionNameChange}
         onThemeToggle={handleThemeToggle}
-        onAuthClick={onAuthClick}
+        onAuthClick={handleAuthClick}
       />
       <div className="game-content">
-        
+        <MechList />
       </div>
+      <Auth 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+      />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import Notification from '../Notification/Notification';
 import './GameTopBar.css';
 
 const GameTopBar = ({ 
@@ -8,11 +9,13 @@ const GameTopBar = ({
   onSave, 
   onHelp, 
   onSessionNameChange,
-  onThemeToggle 
+  onThemeToggle,
+  onAuthClick 
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [sessionName, setSessionName] = useState(initialSessionName || 'New Session');
-  const { currentUser } = useAuth();
+  const [notification, setNotification] = useState(null);
+  const { currentUser, logout } = useAuth();
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -32,6 +35,26 @@ const GameTopBar = ({
   const handleBlur = () => {
     setIsEditing(false);
     onSessionNameChange?.(sessionName);
+  };
+
+  const handleAuthClick = async () => {
+    if (currentUser) {
+      try {
+        await logout();
+        setNotification({
+          message: 'Successfully logged out!',
+          type: 'success'
+        });
+      } catch (error) {
+        setNotification({
+          message: 'Failed to log out. Please try again.',
+          type: 'error'
+        });
+        console.error('Failed to log out:', error);
+      }
+    } else {
+      onAuthClick?.();
+    }
   };
 
   return (
@@ -69,8 +92,12 @@ const GameTopBar = ({
         <button className="top-bar-button theme-toggle" onClick={onThemeToggle}>
           🌙
         </button>
-        <button className="top-bar-button auth-button">
-          {currentUser ? '👤' : '🔒'}
+        <button 
+          className="top-bar-button auth-button" 
+          onClick={handleAuthClick}
+          title={currentUser ? 'Logout' : 'Login / Sign Up'}
+        >
+          {currentUser ? 'Logout' : 'Login / Sign Up'}
         </button>
         <button className="top-bar-button save-button" onClick={onSave}>
           Save
@@ -79,6 +106,13 @@ const GameTopBar = ({
           ?
         </button>
       </div>
+      {notification && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
+        />
+      )}
     </div>
   );
 };

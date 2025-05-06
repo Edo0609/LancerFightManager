@@ -14,12 +14,11 @@
 
 .modal-content {
   background-color: var(--secondary-color);
-  padding: 2rem;
   border-radius: 8px;
   position: relative;
   width: 90%;
   max-width: 500px;
-  max-height: 90vh;
+  max-height: 70vh;
   overflow-y: auto;
   animation: modalFadeIn 0.3s ease;
 }
