@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 import './GameTopBar.css';
 
 const GameTopBar = ({ 
@@ -11,6 +12,7 @@ const GameTopBar = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [sessionName, setSessionName] = useState(initialSessionName || 'New Session');
+  const { currentUser } = useAuth();
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -66,6 +68,9 @@ const GameTopBar = ({
       <div className="top-bar-right">
         <button className="top-bar-button theme-toggle" onClick={onThemeToggle}>
           🌙
+        </button>
+        <button className="top-bar-button auth-button">
+          {currentUser ? '👤' : '🔒'}
         </button>
         <button className="top-bar-button save-button" onClick={onSave}>
           Save

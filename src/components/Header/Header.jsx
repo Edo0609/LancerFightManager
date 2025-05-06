@@ -12,7 +12,7 @@ const Header = () => {
     <header className="header">
       <div className="header-content">
         <div></div>
-        <button className="theme-toggle" onClick={toggleTheme}>
+        <button className="theme-toggle-header" onClick={toggleTheme}>
           Toggle Theme
         </button>
       </div>

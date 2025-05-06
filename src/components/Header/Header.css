@@ -23,7 +23,7 @@
   color: var(--text-color);
 }
 
-.theme-toggle {
+.theme-toggle-header {
   background-color: var(--primary-color);
   color: var(--text-color);
   border: none;

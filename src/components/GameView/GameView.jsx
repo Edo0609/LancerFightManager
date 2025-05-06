@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import Header from '../Header/Header';
 import GameTopBar from '../GameTopBar/GameTopBar';
 import './GameView.css';
 
-const GameView = () => {
+const GameView = ({ onAuthClick }) => {
   const [sessionName, setSessionName] = useState('Current Session');
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
@@ -42,6 +41,7 @@ const GameView = () => {
         onHelp={handleHelp}
         onSessionNameChange={handleSessionNameChange}
         onThemeToggle={handleThemeToggle}
+        onAuthClick={onAuthClick}
       />
       <div className="game-content">
         
