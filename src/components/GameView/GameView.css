@@ -1,5 +1,6 @@
 .game-view {
   min-height: 100vh;
+  width: 100vw;
   background-color: var(--background-color);
 }
 
@@ -7,6 +8,7 @@
   padding: 2rem;
   padding-top: 5rem; /* Add space for the fixed header */
   color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 .game-content h1 {

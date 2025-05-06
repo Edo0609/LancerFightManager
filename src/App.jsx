@@ -1,19 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainMenu from './components/MainMenu/MainMenu';
+import { AuthProvider } from './contexts/AuthContext';
+import { useAuth } from './contexts/AuthContext';
+import Auth from './components/Auth/Auth';
 import GameView from './components/GameView/GameView';
-import './styles/global.css';
+import './App.css';
+
+function AppContent() {
+  const { currentUser } = useAuth();
+
+  return (
+    <div className="app">
+      {currentUser ? <GameView /> : <Auth />}
+    </div>
+  );
+}
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<MainMenu />} />
-          <Route path="/game" element={<GameView />} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 

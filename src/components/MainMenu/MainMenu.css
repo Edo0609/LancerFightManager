@@ -14,23 +14,19 @@
   flex: 1;
   padding: 2rem;
   padding-top: 5rem;
+  width: 100%;
 }
 
 .logo-container {
   margin-bottom: 1rem;
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   padding: 0 1rem;
 }
 
 .main-logo {
   width: 100%;
   height: auto;
-  transition: transform 0.3s ease;
-}
-
-.main-logo:hover {
-  transform: scale(1.05);
 }
 
 .main-menu h1 {
@@ -51,7 +47,7 @@
 .menu-button {
   width: 100%;
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   background-color: var(--primary-color);
   color: var(--text-color);
   border: none;

@@ -1,0 +1,102 @@
+.game-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+
+  background-color: var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.top-bar-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.top-bar-button:hover {
+  background-color: var(--accent-color);
+}
+
+.theme-toggle {
+  padding: 0.75rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+}
+
+.session-name-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  justify-content: center;
+  margin: 0 1.5rem;
+}
+
+.session-name {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.session-name-input {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-align: center;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  width: 250px;
+  outline: none;
+}
+
+.session-name-input:focus {
+  border-color: var(--accent-color);
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0.35rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.edit-button:hover {
+  opacity: 1;
+}
+
+.top-bar-right {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.help-button {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+} 
