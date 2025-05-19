@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import Popup from '../Popup/Popup';
 import Auth from '../Auth/Auth';
 import Notification from '../Notification/Notification';
+import LogoutConfirmation from '../LogoutConfirmation/LogoutConfirmation';
 import './MainMenu.css';
 
 const MainMenu = () => {
@@ -15,6 +16,7 @@ const MainMenu = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [notification, setNotification] = useState(null);
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
 
   useEffect(() => {
     // Check if this is the first visit
@@ -67,16 +69,25 @@ const MainMenu = () => {
 
   const handleAuth = async () => {
     if (currentUser) {
-      try {
-        await logout();
-        showNotification('Successfully logged out!', 'success');
-      } catch (error) {
-        showNotification('Failed to log out. Please try again.', 'error');
-        console.error('Failed to log out:', error);
-      }
+      setShowLogoutConfirmation(true);
     } else {
       setIsAuthModalOpen(true);
     }
+  };
+
+  const handleLogoutConfirm = async () => {
+    try {
+      await logout();
+      showNotification('Successfully logged out!', 'success');
+    } catch (error) {
+      showNotification('Failed to log out. Please try again.', 'error');
+      console.error('Failed to log out:', error);
+    }
+    setShowLogoutConfirmation(false);
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutConfirmation(false);
   };
 
   const handleInformation = () => {
@@ -113,6 +124,13 @@ const MainMenu = () => {
           message={notification.message}
           type={notification.type}
           onClose={() => setNotification(null)}
+        />
+      )}
+      {showLogoutConfirmation && (
+        <LogoutConfirmation
+          userEmail={currentUser.email}
+          onConfirm={handleLogoutConfirm}
+          onCancel={handleLogoutCancel}
         />
       )}
     </div>

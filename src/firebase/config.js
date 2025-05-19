@@ -1,10 +1,12 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkVb8v9OhyYCM_WS10-OKCQYa2cMthVUA",
   authDomain: "lancerfightmanager.firebaseapp.com",
-  databaseURL: "https://lancerfightmanager-default-rtdb.firebaseio.com",
+  databaseURL: "https://lancerfightmanager-default-rtdb.firebaseio.com/",
   projectId: "lancerfightmanager",
   storageBucket: "lancerfightmanager.firebasestorage.app",
   messagingSenderId: "554429082399",
@@ -13,4 +15,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const database = getDatabase(app);
+export const firestore = getFirestore(app);
 export default app; 

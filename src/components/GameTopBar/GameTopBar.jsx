@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import Notification from '../Notification/Notification';
+import LogoutConfirmation from '../LogoutConfirmation/LogoutConfirmation';
 import './GameTopBar.css';
 
 const GameTopBar = ({ 
@@ -13,8 +14,9 @@ const GameTopBar = ({
   onAuthClick 
 }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [sessionName, setSessionName] = useState(initialSessionName || 'New Session');
+  const [sessionName, setSessionName] = useState(initialSessionName || 'New Session'); //TODO change mouse event.
   const [notification, setNotification] = useState(null);
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
   const { currentUser, logout } = useAuth();
 
   const handleEditToggle = () => {
@@ -37,24 +39,33 @@ const GameTopBar = ({
     onSessionNameChange?.(sessionName);
   };
 
-  const handleAuthClick = async () => {
+  const handleAuthClick = () => {
     if (currentUser) {
-      try {
-        await logout();
-        setNotification({
-          message: 'Successfully logged out!',
-          type: 'success'
-        });
-      } catch (error) {
-        setNotification({
-          message: 'Failed to log out. Please try again.',
-          type: 'error'
-        });
-        console.error('Failed to log out:', error);
-      }
+      setShowLogoutConfirmation(true);
     } else {
       onAuthClick?.();
     }
+  };
+
+  const handleLogoutConfirm = async () => {
+    try {
+      await logout();
+      setNotification({
+        message: 'Successfully logged out!',
+        type: 'success'
+      });
+    } catch (error) {
+      setNotification({
+        message: 'Failed to log out. Please try again.',
+        type: 'error'
+      });
+      console.error('Failed to log out:', error);
+    }
+    setShowLogoutConfirmation(false);
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutConfirmation(false);
   };
 
   return (
@@ -111,6 +122,13 @@ const GameTopBar = ({
           message={notification.message}
           type={notification.type}
           onClose={() => setNotification(null)}
+        />
+      )}
+      {showLogoutConfirmation && (
+        <LogoutConfirmation
+          userEmail={currentUser.email}
+          onConfirm={handleLogoutConfirm}
+          onCancel={handleLogoutCancel}
         />
       )}
     </div>

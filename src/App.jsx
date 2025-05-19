@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AuthProvider } from './contexts/AuthContext';
+import { DatabaseProvider } from './contexts/DatabaseContext';
 import { useAuth } from './contexts/AuthContext';
 import Auth from './components/Auth/Auth';
 import GameView from './components/GameView/GameView';
@@ -39,7 +40,9 @@ function AppContent() {
 function App() {
   return (
     <AuthProvider>
-      <AppContent />
+      <DatabaseProvider>
+        <AppContent />
+      </DatabaseProvider>
     </AuthProvider>
   );
 }
