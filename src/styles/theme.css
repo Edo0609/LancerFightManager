@@ -4,10 +4,16 @@
   --text-color: #ffffff;
   --text-color-secondary: #363636;
   --primary-color: #741d1d;
-  --secondary-color: #3d1d1d;
-  --accent-color: #331c1c;
+  --secondary-color: #1b0c0c;
+  --accent-color: #4b0000;
   --border-color: #e0e0e0;
   --hover-color: #f0f0f0;
+  
+  /* Mech stats specific colors */
+  --stats-background: rgba(0, 0, 0, 0.05);
+  --stats-item-background: rgba(0, 0, 0, 0.03);
+  --stats-text: #2c3e50;
+  --stats-label: #666;
 }
 
 [data-theme="dark"] {
@@ -19,4 +25,10 @@
   --accent-color: #5cd4d4;
   --border-color: #404040;
   --hover-color: #333333;
+  
+  /* Mech stats specific colors for dark theme */
+  --stats-background: rgba(255, 255, 255, 0.1);
+  --stats-item-background: rgba(255, 255, 255, 0.05);
+  --stats-text: #e0e0e0;
+  --stats-label: #b0b0b0;
 } 

@@ -2,12 +2,18 @@ import React, { useEffect } from 'react';
 import { useDatabase } from '../../contexts/DatabaseContext';
 import './AddMechPopup.css';
 
-const AddMechPopup = ({ onClose }) => {
+const AddMechPopup = ({ onClose, onSelectMech }) => {
   const { defaultMechs } = useDatabase();
 
   useEffect(() => {
     console.log('AddMechPopup - defaultMechs:', defaultMechs);
   }, [defaultMechs]);
+
+  const handleMechClick = (mech) => {
+    console.log('Mech clicked:', mech);
+    onSelectMech(mech);
+    onClose();
+  };
 
   return (
     <div className="add-mech-popup-overlay">
@@ -17,12 +23,18 @@ const AddMechPopup = ({ onClose }) => {
           <button className="close-button" onClick={onClose}>×</button>
         </div>
         
-        <div className="mech-list">
+        <div className="popup-mech-list">
           {defaultMechs && defaultMechs.length > 0 ? (
             defaultMechs.map((mech) => {
               console.log('Rendering mech:', mech);
               return (
-                <div key={mech.name} className="mech-item">
+                <div 
+                  key={mech.name} 
+                  className="mech-item" 
+                  onClick={() => handleMechClick(mech)}
+                  role="button"
+                  tabIndex={0}
+                >
                   <div className="mech-image">
                     {mech.image ? (
                       <img src={mech.image} alt={mech.name} />
@@ -33,45 +45,72 @@ const AddMechPopup = ({ onClose }) => {
                   <div className="mech-details">
                     <h3>{mech.name}</h3>
                     <div className="mech-stats">
-                      <div className="stat-row">
-                        <span className="stat-label">Hull:</span>
-                        <span className="stat-value">{mech.Hull}</span>
-                        <span className="stat-label">Agility:</span>
-                        <span className="stat-value">{mech.Agility}</span>
-                        <span className="stat-label">Systems:</span>
-                        <span className="stat-value">{mech.Systems}</span>
+                      {/* Key Stats Row */}
+                      <div className="key-stats-row">
+                        <div className="key-stat">
+                          <span className="stat-label">HP</span>
+                          <span className="stat-value">{mech.Hp}</span>
+                        </div>
+                        <div className="key-stat">
+                          <span className="stat-label">Heat Cap</span>
+                          <span className="stat-value">{mech['Heat cap']}</span>
+                        </div>
+                        <div className="key-stat">
+                          <span className="stat-label">Stress</span>
+                          <span className="stat-value">{mech.Stress}</span>
+                        </div>
+                        <div className="key-stat">
+                          <span className="stat-label">Structure</span>
+                          <span className="stat-value">{mech.Structure}</span>
+                        </div>
                       </div>
-                      <div className="stat-row">
-                        <span className="stat-label">Engineering:</span>
-                        <span className="stat-value">{mech.Engineering}</span>
-                        <span className="stat-label">Structure:</span>
-                        <span className="stat-value">{mech.Structure}</span>
-                        <span className="stat-label">Stress:</span>
-                        <span className="stat-value">{mech.Stress}</span>
-                      </div>
-                      <div className="stat-row">
-                        <span className="stat-label">HP:</span>
-                        <span className="stat-value">{mech.Hp}</span>
-                        <span className="stat-label">Evasion:</span>
-                        <span className="stat-value">{mech.Evasion}</span>
-                        <span className="stat-label">Speed:</span>
-                        <span className="stat-value">{mech.Speed}</span>
-                      </div>
-                      <div className="stat-row">
-                        <span className="stat-label">Heat Cap:</span>
-                        <span className="stat-value">{mech['Heat cap']}</span>
-                        <span className="stat-label">Sensors:</span>
-                        <span className="stat-value">{mech.Sensors}</span>
-                        <span className="stat-label">Armor:</span>
-                        <span className="stat-value">{mech.Armor}</span>
-                      </div>
-                      <div className="stat-row">
-                        <span className="stat-label">E-Defense:</span>
-                        <span className="stat-value">{mech['E-defense']}</span>
-                        <span className="stat-label">Size:</span>
-                        <span className="stat-value">{mech.Size}</span>
-                        <span className="stat-label">Save:</span>
-                        <span className="stat-value">{mech['Save Target']}</span>
+
+                      {/* Remaining Stats Grid */}
+                      <div className="remaining-stats-grid">
+                        <div className="stat-item">
+                          <span className="stat-label">Hull</span>
+                          <span className="stat-value">{mech.Hull}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Agility</span>
+                          <span className="stat-value">{mech.Agility}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Systems</span>
+                          <span className="stat-value">{mech.Systems}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Engineering</span>
+                          <span className="stat-value">{mech.Engineering}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Evasion</span>
+                          <span className="stat-value">{mech.Evasion}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Speed</span>
+                          <span className="stat-value">{mech.Speed}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Sensors</span>
+                          <span className="stat-value">{mech.Sensors}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Armor</span>
+                          <span className="stat-value">{mech.Armor}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">E-Defense</span>
+                          <span className="stat-value">{mech['E-defense']}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Size</span>
+                          <span className="stat-value">{mech.Size}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="stat-label">Save</span>
+                          <span className="stat-value">{mech['Save Target']}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
