@@ -23,8 +23,7 @@ To get Lancer Fight Manager up and running on your local machine, follow these s
     Open your terminal or command prompt and clone the project repository using Git:
 
     ```bash
-    git clone https://github.com/YourUsername/LancerFightManager.git
-    # Replace 'YourUsername' with the actual GitHub username/organization if this is a public repo.
+    git clone https://github.com/Edo0609/LancerFightManager.git
     ```
 
 2.  **Navigate to the Project Directory**:
@@ -65,51 +64,10 @@ This will compile the application into the `dist` directory, which can then be d
 *   **React**: A JavaScript library for building user interfaces.
 *   **Vite**: A fast front-end build tool.
 *   **npm**: Node package manager for managing project dependencies.
-*   **Firebase**: (Assumed based on file structure) Potentially used for database and authentication services.
+*   **Firebase**: Used for database and authentication services.
 
-## Getting Started
 
-### 1. Install Dependencies
-
-Run the following command to install all required dependencies:
-
-```sh
-npm install
-```
-
-This will install:
-
-- `react` and `react-dom` (for building the UI)
-- `react-router-dom` (for routing)
-- `firebase` (for authentication, database, and Firestore)
-- `vite` (for fast development/build)
-- ESLint and plugins (for linting and code quality)
-
-### 2. Project Structure
-
-The main entry point is `src/main.jsx`, and the app is configured with Vite (`vite.config.js`).
-
-### 3. Running the App
-
-To start the development server:
-
-```sh
-npm run dev
-```
-
-To build for production:
-
-```sh
-npm run build
-```
-
-To preview the production build:
-
-```sh
-npm run preview
-```
-
-### 4. Firebase Setup
+## Firebase Setup
 
 This project uses Firebase for authentication and data storage. You need to set up a Firebase project and configure it.
 
