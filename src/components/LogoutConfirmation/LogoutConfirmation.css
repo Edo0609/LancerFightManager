@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 100;
   animation: fadeIn 0.3s ease-out;
 }
 
@@ -60,19 +60,20 @@
   margin-bottom: 0.5rem;
 }
 
-.user-email {
+.logout-user-email {
   color: var(--text-color) !important;
   font-weight: bold;
   margin-bottom: 1.5rem !important;
+  margin-top: 1.2rem;
 }
 
-.confirmation-buttons {
+.logout-confirmation-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
 
-.confirm-button, .cancel-button {
+.logout-confirm-button, .logout-cancel-button {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
@@ -81,21 +82,21 @@
   transition: background-color 0.2s ease;
 }
 
-.confirm-button {
+.logout-confirm-button {
   background-color: var(--primary-color);
   color: white;
 }
 
-.confirm-button:hover {
-  background-color: var(--primary-color);
+.logout-confirm-button:hover {
+  background-color: var(--accent-color);
 }
 
-.cancel-button {
+.logout-cancel-button {
   background-color: var(--background-color);
   color: var(--accent-color);
   border: 1px solid var(--border-color);
 }
 
-.cancel-button:hover {
+.logout-cancel-button:hover {
   background-color: var(--border-color);
 } 

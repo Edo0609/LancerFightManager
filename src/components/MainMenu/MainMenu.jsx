@@ -7,6 +7,8 @@ import Popup from '../Popup/Popup';
 import Auth from '../Auth/Auth';
 import Notification from '../Notification/Notification';
 import LogoutConfirmation from '../LogoutConfirmation/LogoutConfirmation';
+import LoadSessionPopup from '../LoadSessionPopup/LoadSessionPopup';
+import CreditsPopup from '../CreditsPopup/CreditsPopup';
 import './MainMenu.css';
 
 const MainMenu = () => {
@@ -17,6 +19,8 @@ const MainMenu = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [notification, setNotification] = useState(null);
   const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+  const [showLoadSession, setShowLoadSession] = useState(false);
+  const [showCredits, setShowCredits] = useState(false);
 
   useEffect(() => {
     // Check if this is the first visit
@@ -63,8 +67,12 @@ const MainMenu = () => {
   };
 
   const handleLoadGame = () => {
-    // TODO: Implement load game functionality
-    showNotification('Load game functionality coming soon!', 'info');
+    setShowLoadSession(true);
+  };
+
+  const handleLoadSession = (session) => {
+    // Navigate to game view with session data
+    navigate('/game', { state: { session } });
   };
 
   const handleAuth = async () => {
@@ -91,7 +99,7 @@ const MainMenu = () => {
   };
 
   const handleInformation = () => {
-    showNotification('Information and credits coming soon!', 'info');
+    setShowCredits(true);
   };
 
   return (
@@ -133,6 +141,16 @@ const MainMenu = () => {
           onCancel={handleLogoutCancel}
         />
       )}
+      <LoadSessionPopup
+        isOpen={showLoadSession}
+        onClose={() => setShowLoadSession(false)}
+        onLoadSession={handleLoadSession}
+        onAuthClick={() => setIsAuthModalOpen(true)}
+      />
+      <CreditsPopup
+        isOpen={showCredits}
+        onClose={() => setShowCredits(false)}
+      />
     </div>
   );
 };

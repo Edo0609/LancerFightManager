@@ -1,46 +1,51 @@
 .mech-list {
-  padding: 20px;
+  padding: 30px 350px 300px 350px;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
 }
 
 .mech-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 275px); /* Fixed width for each slot */
+  grid-auto-rows: 275px; /* Fixed height for each slot */
   gap: 20px;
-  width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
-  min-height: 400px; /* Ensures the grid has some height even when empty */
+  min-height: 400px;
+  justify-content: center; /* Center the grid items */
 }
 
 .empty-slot {
-  aspect-ratio: 1;
+  width: 275px; /* Fixed width */
+  height: 275px; /* Fixed height */
   background-color: var(--background-color);
   border: 2px solid var(--primary-color);
   border-radius: 8px;
   opacity: 0.3;
 }
 
-/* Remove the responsive adjustments since we want to maintain 5 columns */
-@media (max-width: 1200px) {
+/* Responsive adjustments to maintain margins and fixed slot sizes */
+@media (max-width: 1800px) {
   .mech-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 275px);
+    grid-auto-rows: 275px;
     gap: 15px;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1500px) {
   .mech-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 275px);
+    grid-auto-rows: 275px;
     gap: 10px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
   .mech-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(1, 275px);
+    grid-auto-rows: 275px;
     gap: 8px;
   }
 } 

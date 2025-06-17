@@ -23,12 +23,13 @@ const LogoutConfirmation = ({ userEmail, onConfirm, onCancel }) => {
       <div className={`logout-confirmation-content ${isClosing ? 'fade-out' : ''}`}>
         <h2>Confirm Logout</h2>
         <p>Are you sure you want to log out?</p>
-        <p className="user-email">Currently logged in as: {userEmail}</p>
-        <div className="confirmation-buttons">
-          <button className="confirm-button" onClick={handleConfirm}>
+        <h2><strong>All game content will be reset</strong></h2>
+        <p className="logout-user-email">(Currently logged in as: {userEmail})</p>
+        <div className="logout-confirmation-buttons">
+          <button className="logout-confirm-button" onClick={handleConfirm}>
             Yes, Logout
           </button>
-          <button className="cancel-button" onClick={handleCancel}>
+          <button className="logout-cancel-button" onClick={handleCancel}>
             No, Cancel
           </button>
         </div>

@@ -1,0 +1,219 @@
+.attack-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.attack-popup {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.attack-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.attack-header h2 {
+  margin: 0;
+  color: var(--text-color-secondary);
+}
+
+.attack-close-button {
+  background: none;
+  border: none;
+  color: var(--text-color-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.attack-close-button:hover {
+  opacity: 1;
+  color: var(--text-color);
+}
+
+.attack-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.attack-setting-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attack-setting-group.combined {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.attack-setting-pair {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attack-setting-group label {
+  color: var(--text-color-secondary);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.attack-setting-group input {
+  width: 60px;
+  padding: 0.4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color-secondary);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.attack-roll-button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 1.25rem;
+}
+
+.attack-roll-button:hover {
+  background-color: var(--primary-color);
+}
+
+.attack-results {
+  margin-top: 15px;
+  padding: 12px;
+  background: var(--background-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.attack-final-result {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: var(--text-color-secondary);
+}
+
+.attack-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.attack-result-group {
+  background: var(--background-primary);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  font-size: 0.9em;
+}
+
+.attack-result-group > div {
+  margin: 3px 0;
+  color: var(--text-color-secondary);
+}
+
+.attack-result-group > div:first-child {
+  font-weight: bold;
+  color: var(--text-color-secondary);
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 3px;
+  font-size: 0.95em;
+}
+
+.attack-hit-confirmation {
+  margin-top: 8px;
+  padding: 6px;
+  background: var(--background-secondary);
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.attack-hit-question {
+  font-size: 0.95em;
+  font-weight: bold;
+  color: var(--text-color-secondary);
+  margin-bottom: 6px;
+}
+
+.attack-hit-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.attack-hit-buttons button {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.attack-hit-buttons button:first-child {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+.attack-hit-buttons button:last-child {
+  background-color: var(--stats-button);
+  color: var(--text-color-secondary);
+}
+
+.attack-hit-buttons button:hover {
+  background-color: var(--primary-color);
+}
+
+.attack-damage-result {
+  margin-top: 8px;
+  padding: 6px;
+  background: var(--background-secondary);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.attack-damage-title {
+  font-size: 0.9em;
+  color: var(--text-color-secondary);
+  margin-bottom: 4px;
+}
+
+.attack-damage-value {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--text-color-secondary);
+} 

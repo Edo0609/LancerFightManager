@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { getDefaultMechs } from '../services/databaseService';
+import { getDefaultMechs, getDefaultWeapons, getDefaultSystems } from '../services/databaseService';
 import {
   getUserMechs,
   saveUserMech,
@@ -9,7 +9,9 @@ import {
   updateGameSession,
   deleteGameSession,
   getUserWeapons,
-  saveCustomWeapon
+  saveCustomWeapon,
+  getUserSystems,
+  saveCustomSystem
 } from '../services/firestoreService';
 
 const DatabaseContext = createContext();
@@ -21,9 +23,12 @@ export function useDatabase() {
 export function DatabaseProvider({ children }) {
   const { currentUser } = useAuth();
   const [defaultMechs, setDefaultMechs] = useState([]);
+  const [defaultWeapons, setDefaultWeapons] = useState([]);
+  const [defaultSystems, setDefaultSystems] = useState([]);
   const [userMechs, setUserMechs] = useState([]);
   const [userSessions, setUserSessions] = useState([]);
   const [userWeapons, setUserWeapons] = useState([]);
+  const [userSystems, setUserSystems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Load default mechs
@@ -40,20 +45,54 @@ export function DatabaseProvider({ children }) {
     loadDefaultMechs();
   }, []);
 
+  // Load default weapons
+  useEffect(() => {
+    const loadDefaultWeapons = async () => {
+      try {
+        const weapons = await getDefaultWeapons();
+        setDefaultWeapons(weapons);
+      } catch (error) {
+        console.error('Error loading default weapons:', error);
+        // Set empty array if weapons fail to load
+        setDefaultWeapons([]);
+      }
+    };
+
+    loadDefaultWeapons();
+  }, []);
+
+  // Load default systems
+  useEffect(() => {
+    const loadDefaultSystems = async () => {
+      try {
+        const systems = await getDefaultSystems();
+        setDefaultSystems(systems);
+      } catch (error) {
+        console.error('Error loading default systems:', error);
+        // Set empty array if systems fail to load
+        setDefaultSystems([]);
+      }
+    };
+
+    loadDefaultSystems();
+  }, []);
+
   // Load user data when user is authenticated
   useEffect(() => {
     const loadUserData = async () => {
       if (currentUser) {
         setLoading(true);
         try {
-          const [mechs, sessions, weapons] = await Promise.all([
+          const [mechs, sessions, weapons, systems] = await Promise.all([
             getUserMechs(currentUser.uid),
             getUserSessions(currentUser.uid),
-            getUserWeapons(currentUser.uid)
+            getUserWeapons(currentUser.uid),
+            getUserSystems(currentUser.uid)
           ]);
           setUserMechs(mechs);
           setUserSessions(sessions);
           setUserWeapons(weapons);
+          setUserSystems(systems);
         } catch (error) {
           console.error('Error loading user data:', error);
         }
@@ -62,6 +101,7 @@ export function DatabaseProvider({ children }) {
         setUserMechs([]);
         setUserSessions([]);
         setUserWeapons([]);
+        setUserSystems([]);
       }
     };
 
@@ -115,17 +155,30 @@ export function DatabaseProvider({ children }) {
     return weaponId;
   };
 
+  // Save a custom system
+  const saveSystem = async (systemData) => {
+    if (!currentUser) throw new Error('User must be logged in to save systems');
+    const systemId = await saveCustomSystem(currentUser.uid, systemData);
+    const newSystem = { ...systemData, id: systemId };
+    setUserSystems(prev => [...prev, newSystem]);
+    return systemId;
+  };
+
   const value = {
     defaultMechs,
+    defaultWeapons,
+    defaultSystems,
     userMechs,
     userSessions,
     userWeapons,
+    userSystems,
     loading,
     saveMech,
     saveSession,
     updateSession,
     deleteSession,
-    saveWeapon
+    saveWeapon,
+    saveSystem
   };
 
   return (

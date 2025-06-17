@@ -16,4 +16,31 @@ export const getDefaultMechs = async () => {
     console.error('Error getting default mechs:', error);
     return [];
   }
+};
+
+export const getDefaultWeapons = async () => {
+  try {
+    const weaponsRef = ref(database, 'defaultWeapons');
+    const snapshot = await get(weaponsRef);
+    
+    if (snapshot.exists()) {
+      const weaponsData = snapshot.val();
+      return Object.values(weaponsData);
+    }
+    return [];
+  } catch (error) {
+    console.error('Error getting default weapons:', error);
+    return [];
+  }
+}; 
+
+export const getDefaultSystems = async () => {
+  try {
+    const systemsRef = ref(database, 'defaultSystems');
+    const snapshot = await get(systemsRef);
+    return snapshot.val() || [];
+  } catch (error) {
+    console.error('Error fetching default systems:', error);
+    return [];
+  }
 }; 

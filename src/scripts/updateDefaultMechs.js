@@ -1,6 +1,5 @@
 import { ref, set } from 'firebase/database';
 import { database } from '../firebase/config';
-import { imageToBase64 } from '../utils/imageUtils';
 
 // Function to update default mechs with base64 images
 export const updateDefaultMechsWithImages = async (mechsWithImages) => {
@@ -13,19 +12,3 @@ export const updateDefaultMechsWithImages = async (mechsWithImages) => {
     throw error;
   }
 };
-
-// Example usage:
-/*
-const mechsWithImages = [
-  {
-    name: "BERSERKER",
-    image: "data:image/png;base64,...", // Your base64 string here
-    Hull: 3,
-    Agility: 2,
-    // ... other stats
-  },
-  // ... other mechs
-];
-
-updateDefaultMechsWithImages(mechsWithImages);
-*/ 

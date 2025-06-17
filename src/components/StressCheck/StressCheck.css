@@ -1,0 +1,194 @@
+.stress-check-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.stress-check-content {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.stress-check-content h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+  padding-right: 30px;
+}
+
+.stress-check-roll-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stress-check-roll-section button {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.stress-check-roll-section button:hover {
+  background-color: #3a3a3a;
+}
+
+.stress-check-dice-results {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.stress-check-dice-results p {
+  margin: 5px 0;
+  color: #fff;
+}
+
+.stress-check-outcome {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 20px 0;
+  border-left: 4px solid #444;
+}
+
+.stress-check-outcome.emergency {
+  border-left-color: #4CAF50;
+}
+
+.stress-check-outcome.destabilized {
+  border-left-color: #FFC107;
+}
+
+.stress-check-outcome.meltdown {
+  border-left-color: #F44336;
+}
+
+.stress-check-outcome.irreversible {
+  border-left-color: #9C27B0;
+}
+
+.stress-check-outcome h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.stress-check-engineering {
+  margin-top: 20px;
+}
+
+.stress-check-engineering h3 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.stress-check-engineering-bonus {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.stress-check-engineering-bonus label {
+  color: #fff;
+}
+
+.stress-check-engineering-bonus input {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 5px;
+  border-radius: 4px;
+  width: 60px;
+}
+
+.stress-check-engineering-result {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+
+.stress-check-engineering-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.stress-check-engineering-buttons button {
+  flex: 1;
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.stress-check-engineering-buttons button:hover {
+  background-color: #3a3a3a;
+}
+
+.stress-check-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.stress-check-confirm-button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.stress-check-confirm-button:hover {
+  background-color: #45a049;
+}
+
+.stress-check-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.stress-check-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+} 

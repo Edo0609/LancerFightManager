@@ -1,0 +1,218 @@
+.mech-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.mech-form-content {
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease-out;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar styles */
+.mech-form-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mech-form-content::-webkit-scrollbar-track {
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.mech-form-content::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+.mech-form-content::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+.mech-form-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--primary-color);
+  z-index: 1;
+}
+
+.mech-form-header h2 {
+  color: var(--text-color);
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.mech-form-close-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.mech-form-close-button:hover {
+  opacity: 1;
+}
+
+.mech-form {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--background-color);
+}
+
+.mech-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mech-form-section h3 {
+  color: var(--text-color-secondary);
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.mech-form-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.mech-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mech-form-group label {
+  color: var(--text-color-secondary);
+  font-size: 0.9rem;
+}
+
+.mech-form-group input {
+  padding: 0.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--background-color);
+  color: var(--text-color-secondary);
+  font-size: 1rem;
+}
+
+.mech-form-group input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+/* Image Upload Styles */
+.mech-form-image-upload-group {
+  width: 100%;
+}
+
+.mech-form-image-upload-area {
+  width: 100%;
+  height: 200px;
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: var(--background-color);
+  overflow: hidden;
+}
+
+.mech-form-image-upload-area:hover {
+  border-color: var(--accent-color);
+  background-color: var(--hover-color);
+}
+
+.mech-form-upload-placeholder {
+  color: var(--text-color-secondary);
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.mech-form-image-upload-area:active {
+  transform: scale(0.98);
+}
+
+.mech-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--background-color);
+  z-index: 1;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.mech-form-cancel-button,
+.mech-form-submit-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mech-form-cancel-button {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.mech-form-submit-button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+.mech-form-cancel-button:hover {
+  background-color: var(--secondary-color-hover);
+}
+
+.mech-form-submit-button:hover {
+  background-color: var(--primary-color-hover);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} 

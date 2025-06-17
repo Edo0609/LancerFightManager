@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import Notification from '../Notification/Notification';
 import LogoutConfirmation from '../LogoutConfirmation/LogoutConfirmation';
+import SaveSlotsPopup from '../SaveSlotsPopup/SaveSlotsPopup';
 import './GameTopBar.css';
 
 const GameTopBar = ({ 
@@ -11,13 +12,20 @@ const GameTopBar = ({
   onHelp, 
   onSessionNameChange,
   onThemeToggle,
-  onAuthClick 
+  onAuthClick,
+  mechs,
+  onLoadSession
 }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [sessionName, setSessionName] = useState(initialSessionName || 'New Session'); //TODO change mouse event.
+  const [sessionName, setSessionName] = useState(initialSessionName || 'New Session');
   const [notification, setNotification] = useState(null);
   const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+  const [showSaveSlots, setShowSaveSlots] = useState(false);
   const { currentUser, logout } = useAuth();
+
+  useEffect(() => {
+    setSessionName(initialSessionName || 'New Session');
+  }, [initialSessionName]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -68,17 +76,28 @@ const GameTopBar = ({
     setShowLogoutConfirmation(false);
   };
 
+  const handleSaveClick = () => {
+    setShowSaveSlots(true);
+  };
+
+  const handleSaveSlotsClose = (action) => {
+    setShowSaveSlots(false);
+    if (action === 'login') {
+      onAuthClick?.();
+    }
+  };
+
   return (
-    <div className="game-top-bar">
+    <div className="top-bar">
       <button className="top-bar-button back-button" onClick={onBack}>
         ← Back
       </button>
       
-      <div className="session-name-container">
+      <div className="top-bar-session-name-container">
         {isEditing ? (
           <input
             type="text"
-            className="session-name-input"
+            className="top-bar-session-name-input"
             value={sessionName}
             onChange={handleNameChange}
             onKeyDown={handleNameSubmit}
@@ -86,12 +105,12 @@ const GameTopBar = ({
             autoFocus
           />
         ) : (
-          <div className="session-name">
+          <div className="top-bar-session-name">
             {sessionName}
           </div>
         )}
         <button 
-          className="edit-button" 
+          className="top-bar-edit-button" 
           onClick={handleEditToggle}
           title={isEditing ? "Save" : "Edit session name"}
         >
@@ -100,21 +119,18 @@ const GameTopBar = ({
       </div>
       
       <div className="top-bar-right">
-        <button className="top-bar-button theme-toggle" onClick={onThemeToggle}>
-          🌙
+        <button className="top-bar-button top-bar-theme-toggle" onClick={onThemeToggle}>
+          Theme
         </button>
         <button 
-          className="top-bar-button auth-button" 
+          className="top-bar-button" 
           onClick={handleAuthClick}
-          title={currentUser ? 'Logout' : 'Login / Sign Up'}
+          title={currentUser ? 'Logout' : 'Login/Sign Up'}
         >
-          {currentUser ? 'Logout' : 'Login / Sign Up'}
+          {currentUser ? 'Logout' : 'Login/Sign Up'}
         </button>
-        <button className="top-bar-button save-button" onClick={onSave}>
-          Save
-        </button>
-        <button className="top-bar-button help-button" onClick={onHelp}>
-          ?
+        <button className="top-bar-button save-button" onClick={handleSaveClick}>
+          Save/Load
         </button>
       </div>
       {notification && (
@@ -131,6 +147,13 @@ const GameTopBar = ({
           onCancel={handleLogoutCancel}
         />
       )}
+      <SaveSlotsPopup
+        isOpen={showSaveSlots}
+        onClose={handleSaveSlotsClose}
+        sessionName={sessionName}
+        mechs={mechs}
+        onLoadSession={onLoadSession}
+      />
     </div>
   );
 };

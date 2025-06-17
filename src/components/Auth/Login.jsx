@@ -49,7 +49,7 @@ const Login = ({ onToggleForm, onClose }) => {
         <h2>Login</h2>
         {error && <div className="auth-error">{error}</div>}
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className="auth-form-group">
             <label>Email</label>
             <input
               type="email"
@@ -58,7 +58,7 @@ const Login = ({ onToggleForm, onClose }) => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="auth-form-group">
             <label>Password</label>
             <input
               type="password"

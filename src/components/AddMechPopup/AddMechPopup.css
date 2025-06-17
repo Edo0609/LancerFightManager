@@ -38,7 +38,7 @@
   font-size: 1.5rem;
 }
 
-.close-button {
+.add-mech-close-button {
   background: none;
   border: none;
   color: var(--text-color);
@@ -49,17 +49,37 @@
   transition: opacity 0.2s;
 }
 
-.close-button:hover {
+.add-mech-close-button:hover {
   opacity: 1;
 }
 
-.popup-mech-list {
+.add-mech-popup-list {
   padding: 1rem;
   overflow-y: auto;
   flex: 1;
+  background-color: var(--background-color);
 }
 
-.mech-item {
+/* Custom scrollbar styles */
+.add-mech-popup-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.add-mech-popup-list::-webkit-scrollbar-track {
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.add-mech-popup-list::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+.add-mech-popup-list::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+.add-mech-item {
   display: flex;
   gap: 1rem;
   padding: 1rem;
@@ -73,19 +93,19 @@
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
-.mech-item:hover {
+.add-mech-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-color: var(--accent-color);
 }
 
-.mech-item:focus {
+.add-mech-item:focus {
   outline: none;
   border-color: var(--accent-color);
   box-shadow: 0 0 0 2px var(--accent-color);
 }
 
-.mech-image {
+.add-mech-image {
   width: 180px;
   height: 180px;
   flex-shrink: 0;
@@ -93,14 +113,14 @@
   align-items: center;
 }
 
-.mech-image img {
+.add-mech-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 4px;
 }
 
-.placeholder-image {
+.add-mech-placeholder-image {
   width: 100%;
   height: 100%;
   display: flex;
@@ -112,24 +132,24 @@
   font-size: 0.9rem;
 }
 
-.mech-details {
+.add-mech-details {
   flex: 1;
 }
 
-.mech-details h3 {
+.add-mech-details h3 {
   color: var(--text-color-secondary);
   margin: 0 0 0.5rem 0;
   font-size: 1.2rem;
 }
 
-.mech-stats {
+.add-mech-stats {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   padding: 0.75rem;
 }
 
-.key-stats-row {
+.add-mech-key-stats-row {
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
@@ -139,7 +159,7 @@
   margin-bottom: 0.75rem;
 }
 
-.key-stat {
+.add-mech-key-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,27 +169,27 @@
   border-radius: 6px;
 }
 
-.key-stat .stat-label {
+.add-mech-key-stat .add-mech-stat-label {
   font-weight: bold;
   font-size: 0.95em;
   margin-bottom: 0.15rem;
   color: var(--stats-label);
 }
 
-.key-stat .stat-value {
+.add-mech-key-stat .add-mech-stat-value {
   font-size: 1.1em;
   font-weight: bold;
   color: var(--stats-text);
 }
 
-.remaining-stats-grid {
+.add-mech-remaining-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 0.5rem;
   padding: 0.35rem;
 }
 
-.stat-item {
+.add-mech-stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,13 +198,13 @@
   border-radius: 4px;
 }
 
-.stat-label {
+.add-mech-stat-label {
   font-size: 0.85em;
   color: var(--stats-label);
   margin-bottom: 0.15rem;
 }
 
-.stat-value {
+.add-mech-stat-value {
   font-weight: 500;
   font-size: 0.95em;
   color: var(--stats-text);
@@ -197,7 +217,7 @@
   justify-content: flex-end;
 }
 
-.create-mech-button {
+.add-mech-create-button {
   background-color: var(--accent-color);
   color: var(--text-color);
   border: none;
@@ -208,7 +228,7 @@
   transition: background-color 0.2s;
 }
 
-.create-mech-button:hover {
+.add-mech-create-button:hover {
   background-color: var(--secondary-color);
 }
 

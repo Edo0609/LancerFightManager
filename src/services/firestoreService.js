@@ -7,7 +7,8 @@ import {
   updateDoc, 
   deleteDoc,
   query,
-  where
+  where,
+  addDoc
 } from 'firebase/firestore';
 import { firestore } from '../firebase/config';
 
@@ -46,14 +47,13 @@ export const getUserMechs = async (userId) => {
 // Save a game session
 export const saveGameSession = async (userId, sessionData) => {
   try {
-    const sessionRef = doc(collection(firestore, 'users', userId, 'sessions'));
-    await setDoc(sessionRef, {
+    const sessionsRef = collection(firestore, 'users', userId, 'sessions');
+    const docRef = await addDoc(sessionsRef, {
       ...sessionData,
-      id: sessionRef.id,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     });
-    return sessionRef.id;
+    return docRef.id;
   } catch (error) {
     console.error('Error saving game session:', error);
     throw error;
@@ -64,14 +64,14 @@ export const saveGameSession = async (userId, sessionData) => {
 export const getUserSessions = async (userId) => {
   try {
     const sessionsRef = collection(firestore, 'users', userId, 'sessions');
-    const snapshot = await getDocs(sessionsRef);
-    return snapshot.docs.map(doc => ({
+    const querySnapshot = await getDocs(sessionsRef);
+    return querySnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     }));
   } catch (error) {
     console.error('Error getting user sessions:', error);
-    return [];
+    throw error;
   }
 };
 
@@ -129,5 +129,33 @@ export const getUserWeapons = async (userId) => {
   } catch (error) {
     console.error('Error getting user weapons:', error);
     return [];
+  }
+};
+
+export const getUserSystems = async (userId) => {
+  try {
+    const systemsRef = collection(firestore, 'users', userId, 'systems');
+    const snapshot = await getDocs(systemsRef);
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+  } catch (error) {
+    console.error('Error fetching user systems:', error);
+    return [];
+  }
+};
+
+export const saveCustomSystem = async (userId, systemData) => {
+  try {
+    const systemsRef = collection(firestore, 'users', userId, 'systems');
+    const docRef = await addDoc(systemsRef, {
+      ...systemData,
+      createdAt: new Date().toISOString()
+    });
+    return docRef.id;
+  } catch (error) {
+    console.error('Error saving custom system:', error);
+    throw error;
   }
 }; 

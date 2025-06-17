@@ -13,7 +13,7 @@
 }
 
 .modal-content {
-  background-color: var(--secondary-color);
+  background-color: var(--background-color);
   border-radius: 8px;
   position: relative;
   width: 90%;
@@ -29,7 +29,7 @@
   right: 1rem;
   background: none;
   border: none;
-  color: var(--text-color);
+  color: var(--text-color-secondary);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
@@ -40,6 +40,7 @@
 
 .modal-close:hover {
   opacity: 1;
+  color: var(--text-color);
 }
 
 @keyframes modalFadeIn {

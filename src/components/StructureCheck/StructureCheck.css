@@ -1,0 +1,223 @@
+.structure-check-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.structure-check-content {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.structure-check-content h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.structure-check-roll-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.structure-check-roll-section button {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.structure-check-roll-section button:hover {
+  background-color: #3a3a3a;
+}
+
+.structure-check-dice-results {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.structure-check-dice-results p {
+  margin: 5px 0;
+  color: #fff;
+}
+
+.structure-check-outcome {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 20px 0;
+  border-left: 4px solid #444;
+}
+
+.structure-check-outcome.glancing {
+  border-left-color: #4CAF50;
+}
+
+.structure-check-outcome.trauma {
+  border-left-color: #FFC107;
+}
+
+.structure-check-outcome.direct {
+  border-left-color: #F44336;
+}
+
+.structure-check-outcome.crushing {
+  border-left-color: #9C27B0;
+}
+
+.structure-check-outcome h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.structure-check-system-select {
+  margin-top: 20px;
+}
+
+.structure-check-system-select h3 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.structure-check-system-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.structure-check-system-list button {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: left;
+}
+
+.structure-check-system-list button:hover {
+  background-color: #3a3a3a;
+}
+
+.structure-check-hull {
+  margin-top: 20px;
+}
+
+.structure-check-hull h3 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.structure-check-hull-bonus {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.structure-check-hull-bonus label {
+  color: #fff;
+}
+
+.structure-check-hull-bonus input {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 5px;
+  border-radius: 4px;
+  width: 60px;
+}
+
+.structure-check-hull-result {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+
+.structure-check-hull-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.structure-check-hull-buttons button {
+  flex: 1;
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.structure-check-hull-buttons button:hover {
+  background-color: #3a3a3a;
+}
+
+.structure-check-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.structure-check-confirm-button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.structure-check-confirm-button:hover {
+  background-color: #45a049;
+}
+
+.structure-check-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.structure-check-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+} 

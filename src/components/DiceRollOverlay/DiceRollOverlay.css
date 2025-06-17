@@ -1,0 +1,127 @@
+.dice-overlay {
+  position: fixed;
+  width: 400px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  user-select: none;
+}
+
+.dice-overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: move;
+}
+
+.dice-overlay-header span {
+  font-weight: bold;
+}
+
+.dice-overlay-close-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.dice-overlay-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dice-overlay-content {
+  padding: 16px;
+  min-height: 200px;
+}
+
+.dice-overlay-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dice-overlay-buttons button {
+  flex: 1;
+  padding: 8px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.dice-overlay-buttons button:hover {
+  background-color: var(--primary-color);
+}
+
+.dice-overlay-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dice-overlay-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--background-color);
+  color: var(--text-color-secondary);
+}
+
+.dice-overlay-input button {
+  padding: 8px 16px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.dice-overlay-input button:hover {
+  background-color: var(--primary-color);
+}
+
+.dice-overlay-result {
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.dice-overlay-result h3 {
+  margin: 0 0 8px 0;
+  color: var(--text-color-secondary);
+}
+
+.dice-overlay-result pre {
+  margin: 0 0 8px 0;
+  white-space: pre-wrap;
+  color: var(--text-color-secondary);
+  font-family: inherit;
+}
+
+.dice-overlay-result .total {
+  font-weight: bold;
+  color: var(--accent-color);
+  font-size: 1.2em;
+} 

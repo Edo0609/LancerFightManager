@@ -1,12 +1,15 @@
 .mech-card-container {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1;
+  width: 275px; /* Fixed width */
+  height: 275px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .mech-card {
-  width: 100%;
-  height: 100%;
+  width: 275px; /* Fixed width */
+  height: 275px; /* Fixed height */
   padding: 0.75rem;
   border: 2px solid var(--border-color);
   border-radius: 8px;
@@ -14,32 +17,58 @@
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .mech-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+}
+
+.mech-card:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mech-card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.mech-card-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.20;
+  transition: opacity 0.2s;
+}
+
+.mech-card:hover .mech-card-background img {
+  opacity: 0.2;
 }
 
 .mech-card-content {
+  position: relative;
+  z-index: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.mech-card-image {
-  width: 100%;
-  height: 140px;
-  overflow: hidden;
-  border-radius: 4px;
-  background-color: var(--stats-item-background);
-}
-
-.mech-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  border-radius: 6px;
+  padding: 0.5rem;
+  padding-bottom: 2rem;
+  flex: 1;
 }
 
 .placeholder-image {
@@ -51,45 +80,42 @@
   color: var(--text-color-secondary);
   font-size: 0.9em;
   background-color: var(--stats-item-background);
+  opacity: 0.3;
 }
 
 .mech-card-header {
   text-align: center;
-  margin: 0.25rem 0;
+  margin: 0.5rem 0.5rem;
 }
 
 .mech-card-header h3 {
   margin: 0;
   color: var(--text-color-secondary);
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 .mech-card-stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.25rem;
+  gap: 0.5rem;
   padding: 0.25rem;
-}
-
-.mech-card .key-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.15rem;
-  background-color: var(--stats-item-background);
-  border-radius: 4px;
-  min-width: 0;
+  flex: 1;
+  align-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mech-card .stat-label {
-  font-size: 0.7em;
+  font-size: 0.8em;
   color: var(--stats-label);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .mech-card .stat-value {
   font-size: 0.8em;
   font-weight: bold;
   color: var(--stats-text);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .mech-placeholder {
@@ -104,7 +130,7 @@
   right: 0.5rem;
   width: 24px;
   height: 24px;
-  border-radius: 50%;
+  border-radius: 5px;
   border: none;
   background-color: var(--accent-color);
   color: var(--text-color);
@@ -116,7 +142,7 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.2s, background-color 0.2s;
-  z-index: 1;
+  z-index: 4;
 }
 
 .mech-card:hover .delete-button {
@@ -136,10 +162,10 @@
   border: 2px solid var(--border-color);
   border-radius: 8px;
   padding: 0.75rem;
-  z-index: 10;
+  z-index: 98;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   animation: slideRight 0.2s ease-out;
-  width: 200px;
+  width: 250px;
 }
 
 .additional-stats {
@@ -153,7 +179,7 @@
   flex-direction: column;
   align-items: center;
   padding: 0.25rem;
-  background-color: var(--stats-item-background);
+  background-color: var(--stats-item-expanded-background);
   border-radius: 4px;
 }
 
@@ -177,4 +203,824 @@
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.stat-control {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  justify-content: center;
+}
+
+.stat-button {
+  background: var(--stats-button);
+  color: var(--text-color-secondary);
+  border: none;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.stat-button:hover {
+  background: var(--stats-button-hover);
+}
+
+.stat-value {
+  font-size: 0.75em;
+  font-weight: bold;
+  color: var(--stats-text);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.7em;
+  color: var(--stats-label);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+.stat-control input {
+  width: 40px;
+  text-align: center;
+  background: var(--hover-color);
+  color: var(--text-color-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 0.75em;
+}
+
+.mech-card-header input {
+  background: var(--hover-color);
+  color: var(--text-color-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 1.2em;
+  width: 100%;
+  text-align: center;
+}
+
+.weapon-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.weapon-section h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-color-secondary);
+  font-size: 1em;
+  text-align: center;
+}
+
+.weapon-list {
+  background-color: var(--stats-item-expanded-background);
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.weapon-placeholder {
+  color: var(--text-color-secondary);
+  font-size: 0.9em;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.weapon-menu-container {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  margin-right: 0.5rem;
+  min-width: 300px;
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  z-index: 99;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideLeft 0.2s ease-out;
+}
+
+.weapon-menu h4 {
+  color: var(--text-color-secondary);
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.weapon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.weapon-item {
+  background-color: var(--stats-item-expanded-background);
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.no-weapons {
+  color: var(--text-color-secondary);
+  text-align: center;
+  font-style: italic;
+  padding: 0.5rem;
+  opacity: 0.7;
+}
+
+.weapon-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8em;
+  color: var(--text-color-secondary);
+}
+
+.weapon-stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.weapon-passives {
+  margin-top: 0.25rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border-color);
+  font-style: italic;
+}
+
+.weapon-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.weapon-options-container {
+  overflow-y: auto;
+  padding: 10px;
+  flex: 1;
+}
+
+/* Custom scrollbar styles for weapon-options-container */
+.weapon-options-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.weapon-options-container::-webkit-scrollbar-track {
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.weapon-options-container::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+.weapon-options-container::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+.create-weapon-button {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin: 10px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.create-weapon-button:hover {
+  background: var(--primary-color-hover);
+}
+
+.weapon-option {
+  padding: 8px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.weapon-option:last-child {
+  border-bottom: none;
+}
+
+.weapon-option:hover {
+  background: var(--hover-color);
+}
+
+.weapon-name {
+  font-weight: 500;
+  color: var(--text-color-secondary);
+}
+
+.weapon-type {
+  font-size: 0.9em;
+  color: var(--text-color-secondary);
+  margin-bottom: 4px;
+}
+
+.weapon-stats {
+  font-size: 0.9em;
+  color: var(--text-color-secondary);
+}
+
+.weapon-stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.weapon-passives {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-color);
+  font-style: italic;
+}
+
+.attack-status {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+  animation: fadeIn 0.3s ease-in;
+  white-space: nowrap;
+  width: auto;
+  min-width: 120px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background-color: var(--stats-item-background);
+  border-radius: 4px;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.status-conditions-button {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s, background-color 0.2s;
+  z-index: 4;
+}
+
+.mech-card:hover .status-conditions-button {
+  opacity: 1;
+}
+
+.status-conditions-button:hover {
+  background-color: var(--primary-color);
+}
+
+.status-conditions-container {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  margin-right: 0.5rem;
+  width: 250px;
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideLeft 0.2s ease-out;
+}
+
+.status-section,
+.conditions-section {
+  margin-bottom: 0.75rem;
+}
+
+.status-section:last-child,
+.conditions-section:last-child {
+  margin-bottom: 0;
+}
+
+.status-section h4,
+.conditions-section h4 {
+  color: var(--text-color-secondary);
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.status-list,
+.conditions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.status-item,
+.condition-item {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  background-color: var(--stats-item-background);
+  color: var(--text-color-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.status-item:hover,
+.condition-item:hover {
+  background-color: var(--stats-item-expanded-background);
+}
+
+.status-item.active,
+.condition-item.active {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-color: var(--primary-color);
+}
+
+.status-item.auto-status {
+  cursor: default;
+  opacity: 0.8;
+}
+
+.status-item.auto-status:hover {
+  background-color: var(--primary-color);
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.create-weapon-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.systems-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 2.5rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s, background-color 0.2s;
+  z-index: 4;
+}
+
+.mech-card:hover .systems-button {
+  opacity: 1;
+}
+
+.systems-button:hover {
+  background-color: var(--primary-color);
+}
+
+.systems-container {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 0.5rem;
+  width: 300px;
+  max-height: 200%;
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideRight 0.2s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.systems-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 200%;
+  overflow: hidden;
+}
+
+.systems-header {
+  color: var(--text-color-secondary);
+  margin: 0;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 0.75rem;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.systems-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.system-item {
+  background-color: var(--stats-item-expanded-background);
+  border-radius: 4px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.system-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.system-name {
+  font-weight: bold;
+  color: var(--text-color-secondary);
+  font-size: 0.9em;
+  flex: 1;
+}
+
+.uninstall-system-button {
+  background: none;
+  border: none;
+  color: var(--text-color-secondary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.uninstall-system-button:hover {
+  opacity: 1;
+  color: var(--error-color, #ff4444);
+  background-color: var(--hover-color);
+}
+
+.system-description {
+  color: var(--text-color-secondary);
+  font-size: 0.8em;
+  line-height: 1.4;
+}
+
+.system-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.system-tag {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7em;
+}
+
+.no-systems {
+  color: var(--text-color-secondary);
+  font-size: 0.9em;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.add-system-button {
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  flex-shrink: 0;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--border-color);
+  padding: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.add-system-button button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.add-system-button button:hover {
+  background-color: var(--primary-color);
+}
+
+.add-system-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.add-system-popup-content {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-system-popup-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-system-popup-header h2 {
+  color: var(--text-color-secondary);
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.systems-grid {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.system-option {
+  background-color: var(--stats-item-expanded-background);
+  border-radius: 4px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.system-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-system-popup-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+}
+
+.create-system-button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+}
+
+.create-system-button:hover {
+  background-color: var(--primary-color);
+}
+
+/* Style the scrollbar */
+.systems-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.systems-content::-webkit-scrollbar-track {
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.systems-content::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+.systems-content::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+.weapon-destroyed {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid #f44336;
+}
+
+.weapon-destroyed-message {
+  color: #f44336;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.weapon-destroyed-description {
+  color: #ccc;
+  font-size: 0.9em;
+}
+
+.meltdown-warning {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #f44336;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+  z-index: 1;
+  cursor: help;
+}
+
+.meltdown-warning::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  margin-bottom: 5px;
+  z-index: 2;
+}
+
+.meltdown-warning:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: opacity 0.2s;
+  opacity: 0.7;
+}
+
+.close-button:hover {
+  opacity: 1;
+  color: var(--text-color);
 } 
