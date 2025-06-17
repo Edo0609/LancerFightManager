@@ -147,8 +147,10 @@ Replace the values in `firebaseConfig` with your own from the Firebase console.
 
 ## Contributing
 
-(Add contributing guidelines here if applicable)
+This project was made as the final project for my class. Do with it as you will, it will remain open to the public.
 
 ## License
 
-(Add license information here if applicable)
+Lancer Fight Manager is not an official Lancer product; it is a third party work, 
+and is not affiliated with Massif Press. Lancer Fight Manager is published via the 
+Lancer Third Party License.
