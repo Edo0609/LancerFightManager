@@ -4,13 +4,13 @@ import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyAkVb8v9OhyYCM_WS10-OKCQYa2cMthVUA",
+  authDomain: "lancerfightmanager.firebaseapp.com",
+  databaseURL: "https://lancerfightmanager-default-rtdb.firebaseio.com/",
+  projectId: "lancerfightmanager",
+  storageBucket: "lancerfightmanager.firebasestorage.app",
+  messagingSenderId: "554429082399",
+  appId: "1:554429082399:web:4c31894076bd7360f7de2a",
 };
 
 const app = initializeApp(firebaseConfig);
